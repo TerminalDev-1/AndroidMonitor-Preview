@@ -1,6 +1,11 @@
-# Android Monitor
+# Android Monitor (Preview)
 
-[![Build](https://github.com/TerminalDev-1/AndroidMonitor/actions/workflows/build.yml/badge.svg)](https://github.com/TerminalDev-1/AndroidMonitor/actions/workflows/build.yml)
+[![Build](https://github.com/TerminalDev-1/AndroidMonitor-Preview/actions/workflows/build.yml/badge.svg)](https://github.com/TerminalDev-1/AndroidMonitor-Preview/actions/workflows/build.yml)
+
+> [!WARNING]
+> **This is a preview project with no guarantee of maintenance.**
+> It may change, break, or stop being updated at any time, without notice.
+> Use it as-is, and expect breaking changes between versions.
 
 A modern, open-source system monitor for Android tablets and phones, inspired by the Windows Task Manager.
 
