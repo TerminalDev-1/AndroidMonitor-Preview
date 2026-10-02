@@ -13,57 +13,76 @@ A modern, open-source system monitor for Android tablets and phones, inspired by
 
 Live graphs for **CPU, GPU, memory, network, battery and temperatures**, plus a **process list** where you can see what's using your device and end tasks.
 
+## 🤖 Built for AI coding agents
+
+This repo is set up so you don't need to read build docs. Open it in **[Claude Code](https://claude.com/claude-code)**, **[Codex](https://openai.com/codex/)**, or any coding agent and ask for what you want. Everything the agent needs (toolchain versions, build and install commands, device quirks, architecture) is in [`AGENTS.md`](AGENTS.md). Claude Code also reads it through [`CLAUDE.md`](CLAUDE.md).
+
+Start in an empty folder and paste one of these prompts:
+
+**Install it on my device**
+```text
+Clone https://github.com/TerminalDev-1/AndroidMonitor-Preview, follow its AGENTS.md
+to install whatever toolchain I'm missing, build the app, and install it on my
+Android device (it's connected with USB or wireless debugging).
+```
+
+**Unlock full stats with Shizuku**
+```text
+Help me set up Shizuku on my Android device so Android Monitor can show real CPU
+usage and the process list. Walk me through the steps I have to do on the device.
+```
+
+**Add support for my device**
+```text
+Some stats in Android Monitor show "Not available" on my device. Use adb to find
+which GPU and thermal files my device exposes, add support for them following
+AGENTS.md, then rebuild and install so I can check.
+```
+
+**Make it yours**
+```text
+Read AGENTS.md, then add [your idea: a floating FPS overlay / a home-screen widget /
+a battery history graph] to Android Monitor. Build it and install it on my device.
+```
+
+Prefer the APK? Grab it from [Releases](https://github.com/TerminalDev-1/AndroidMonitor-Preview/releases).
+
 ## Features
 
 - **Performance view** with live 60-second graphs. On tablets, a sidebar of mini-graphs sits next to a large detail view, just like Task Manager.
-- **CPU:** total and per-core utilization, clock speeds, core count, up time, and the SoC name (for example "Snapdragon 8 Gen 2").
-- **GPU:** utilization, frequency and temperature (Qualcomm Adreno, plus generic `/sys/kernel/gpu` drivers).
+- **CPU:** total and per-core utilization, clock speeds, core count, up time, and the chip name (for example "Snapdragon 870").
+- **GPU:** utilization, frequency and temperature where the driver exposes them (Qualcomm Adreno, plus generic `/sys/kernel/gpu` drivers).
 - **Memory:** usage, composition (in use / cached / free), zRAM swap, and storage.
 - **Network:** receive and send throughput.
 - **Battery & thermal:** charge, power draw, voltage, current, thermal status, and every thermal sensor.
 - **Processes:** grouped by app, with icons, CPU and memory "heat" columns, search, sorting, and End task.
 - Light and dark themes, and an adjustable refresh rate.
 
-## Why does it need Shizuku?
+## Why Shizuku?
 
 Since Android 8, regular apps can't read system-wide CPU usage or see other apps' processes. That's why most monitors on the Play Store show broken or fake numbers. Android Monitor has three modes:
 
 | Mode | Setup | What you get |
 |---|---|---|
-| **Standard** | None | Memory, network, battery, CPU clock speeds, GPU where readable. CPU usage is *estimated* from clock speeds and labelled as an estimate. |
+| **Standard** | None | Memory, network, battery, CPU clock speeds, plus GPU and thermal where the device allows it. CPU usage is *estimated* from clock speeds and labelled as an estimate. |
 | **Shizuku** (recommended) | Install [Shizuku](https://shizuku.rikka.app/) and start it with wireless debugging | Real CPU usage, per-core load, the process list, End task, all thermal sensors |
 | **Root** | A rooted device | Same as Shizuku |
 
 [Shizuku](https://github.com/RikkaApps/Shizuku) is a free, open-source app that lets other apps use ADB-level permissions without root. Android Monitor only uses it to **read** system files (`/proc`, `/sys`) and to run `am force-stop` when you tap End task.
 
-## Building
+## Building by hand
 
-1. Install [Android Studio](https://developer.android.com/studio) (recent stable version).
-2. **File → Open** and choose this folder. Android Studio downloads Gradle and the Android SDK on the first sync.
-3. Connect your device with USB debugging on, then press **Run**.
-
-To build from the command line, generate the Gradle wrapper once (Android Studio's terminal works), then:
+Prefer doing it yourself? Open the folder in [Android Studio](https://developer.android.com/studio) and press **Run**, or from a terminal with JDK 17 or 21:
 
 ```bash
-./gradlew assembleDebug
+./gradlew installDebug
 ```
 
-## Project layout
-
-```
-app/src/main/java/io/github/androidmonitor/
-├── privileged/   Shizuku and root access (AccessManager, ShellService)
-├── data/         Readers for CPU, GPU, memory, thermal, battery, network, processes
-└── ui/           Jetpack Compose screens, charts and theme
-```
+[`AGENTS.md`](AGENTS.md) has the full details, and they work for humans too.
 
 ## Contributing
 
-Issues and pull requests are welcome. GPU and thermal file paths vary a lot between devices. If a stat shows "Not available" on your device, please open an issue with your device model and the output of:
-
-```bash
-adb shell ls /sys/class/kgsl/kgsl-3d0 /sys/kernel/gpu
-```
+Issues and pull requests are welcome, including ones written with an agent. GPU and thermal file paths vary a lot between devices, so support for more devices is the most useful contribution. Use the "Add support for my device" prompt above, or open an issue with your device model.
 
 ## License
 
