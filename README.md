@@ -13,11 +13,13 @@ A modern, open-source system monitor for Android tablets and phones, inspired by
 
 Live graphs for **CPU, GPU, memory, network, battery and temperatures**, plus a **process list** where you can see what's using your device and end tasks.
 
-## 🤖 Built for AI coding agents
+## ✨ Made for vibe coding
 
-This repo is set up so you don't need to read build docs. Open it in **[Claude Code](https://claude.com/claude-code)**, **[Codex](https://openai.com/codex/)**, or any coding agent and ask for what you want. Everything the agent needs (toolchain versions, build and install commands, device quirks, architecture) is in [`AGENTS.md`](AGENTS.md). Claude Code also reads it through [`CLAUDE.md`](CLAUDE.md).
+You don't need to know Kotlin, Android, or Gradle to use or change this app. If you like building things by chatting with AI, this repo is for you. Open your favorite AI coding tool (**[Claude Code](https://claude.com/claude-code)**, **[Codex](https://openai.com/codex/)**, or whatever you vibe with), describe what you want in plain words, and let it handle the technical parts.
 
-Start in an empty folder and paste one of these prompts:
+The repo includes an [`AGENTS.md`](AGENTS.md) that briefs your AI on the setup, the device quirks, and the house rules, so it gets things right on the first try instead of guessing.
+
+Not sure where to start? Paste one of these:
 
 **Install it on my device**
 ```text
@@ -78,11 +80,11 @@ Prefer doing it yourself? Open the folder in [Android Studio](https://developer.
 ./gradlew installDebug
 ```
 
-[`AGENTS.md`](AGENTS.md) has the full details, and they work for humans too.
+[`AGENTS.md`](AGENTS.md) has the full details.
 
 ## Contributing
 
-Issues and pull requests are welcome, including ones written with an agent. GPU and thermal file paths vary a lot between devices, so support for more devices is the most useful contribution. Use the "Add support for my device" prompt above, or open an issue with your device model.
+Issues and pull requests are welcome, and vibe-coded ones totally count. GPU and thermal file paths vary a lot between devices, so support for more devices is the most useful contribution. Use the "Add support for my device" prompt above, or open an issue with your device model.
 
 ## License
 
